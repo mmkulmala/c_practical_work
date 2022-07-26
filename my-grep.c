@@ -5,6 +5,9 @@
 
 
 /**
+ * @brief dokumentaation viittaus [1]
+ *
+ *
  * Removes an occurrence from the beginning of a list.
  * head - A pointer to the current head of a list, NULL if it's empty
  * line - A pointer at which to store the removed line

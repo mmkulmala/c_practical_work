@@ -12,7 +12,7 @@ my-grep: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
 
 my-cat:
-	$(CC) -o my-cat my-cat.c
+	$(CC) -o my-cat my-cat.c -Wall -Werror
 
 my-unzip:
 	$(CC) -o my-unzip my-unzip.c
