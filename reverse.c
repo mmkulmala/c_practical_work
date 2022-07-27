@@ -9,15 +9,15 @@
 #define WRITE_FILE "w"
 #define LSIZ 1024
 #define RSIZ 1024
-#define RSTDINSIZ 1024
-#define BUFFSIZE 1024
+#define WORDSSIZE 1024
+#define BUFFERSIZE 1024
 
 /**
  * Funktioiden prototyypit
  */
-int read_stdin_stdout();
-int read_write_std(const char *filename);
-int read_write_file(const char *fn_read, const char *fn_write);
+int readFromStdinToStdout();
+int readFromFileWriteToStdout(const char *filename);
+int readFromFileWriteToFile(const char *fn_read, const char *fn_write);
 
 int main(int argc, char *argv[])
 {
@@ -29,15 +29,19 @@ int main(int argc, char *argv[])
      * 2 = luetaan annetusta tiedostosta stdout:iin
      * 3 = luetaan annetusta tiedostosta annettuun tiedostoon
      */
+    if (argc >3) { // tarkistus liian isolle parametri määrälle
+        fprintf(stdout, "");
+        exit(1);
+    }
     switch (argc) {
         case 1:
-            ret = read_stdin_stdout();
+            ret = readFromStdinToStdout();
             break;
         case 2:
-            read_write_std(argv[1]);
+            ret = readFromFileWriteToStdout(argv[1]);
             break;
         case 3:
-            ret = read_write_file(argv[1], argv[2]);
+            ret = readFromFileWriteToFile(argv[1], argv[2]);
             break;
         default:
             break;
@@ -46,58 +50,59 @@ int main(int argc, char *argv[])
     return ret;
 }
 
-int read_stdin_stdout()
+/**
+ * @brief luetaan stdinistä kääntäen stdoutiin
+ * https://stackoverflow.com/questions/41518039/how-to-input-strings-into-an-array-in-c
+ * @return int 
+ */
+int readFromStdinToStdout()
 {
-    char *words[RSTDINSIZ];
-    char buffer[BUFFSIZE];
-    size_t i, count = 0, slen;
+    char *words[WORDSSIZE];
+    char buffer[BUFFERSIZE];
+    size_t i; 
+    size_t counter = 0;
+    size_t buflen;
 
-    /* looppaa kunnes raja RSTDINSIZ tulee vastaan */
-    for (i = 0; i < RSTDINSIZ; i++) {
+    /* loopataan kunnes raja tulee vastaan */
+    for (i = 0; i < WORDSSIZE; i++) {
 
         /* luetaan lause ja tarkastetaan virhe */
         printf("Anna lause: ");
-        if (fgets(buffer, BUFFSIZE, stdin) == NULL) {
+        if (fgets(buffer, BUFFERSIZE, stdin) == NULL) {
             fprintf(stderr, "Error reading string into buffer.\n");
             exit(EXIT_FAILURE);
         }
 
         /* poistetaan newline bufferista ja tarkastetaan overflow */
-        slen = strlen(buffer);
-        if (slen > 0) {
-            if (buffer[slen-1] == '\n') {
-                buffer[slen-1] = '\0';
+        buflen = strlen(buffer);
+        if (buflen > 0) {
+            if (buffer[buflen-1] == '\n') {
+                buffer[buflen-1] = '\0';
             } else {
-                printf("Exceeded buffer length of %d.\n", BUFFSIZE);
+                fprintf(stderr, "Exceeded buffer length of %d.\n", BUFFERSIZE);
                 exit(EXIT_FAILURE);
             }
         }
 
-        /* mitään ei tullut, joten lopetetaan*/
+        /* mitään ei tullut bufferiin, joten lopetetaan */
         if (!*buffer) {
             break;
         }
 
-        /* allocate space for `words[i]` and null terminator */
-        words[count] = malloc(strlen(buffer)+1);
+        /* allokoidaan tilaa words[i] js null terminaattorille */
+        words[counter] = malloc(strlen(buffer)+1);
 
-        /* checking return of malloc, very good to do this */
-        if (!words[count]) {
-            printf("Cannot allocate memory for string.\n");
-            exit(EXIT_FAILURE);
-        }
+        /* kopioidaan pointeriin */
+        strcpy(words[counter], buffer);
 
-        /* if everything is fine, copy over into your array of pointers */
-        strcpy(words[count], buffer);
-
-        /* increment count, ready for next space in array */
-        count++;
+        /* laskurin kasvatus */
+        counter++;
     }
 
     /* lukeminen valmis käännetään lauseet */
     printf("\nKirjoittamasi lauseet olivat käänteisessä järjestyksessä:\n");
-    for (int j = count -1; j >= 0; j--) {
-        printf("%s\n", words[j]);
+    for (int j = counter -1; j >= 0; j--) {
+        fprintf(stdout," %s\n", words[j]);
         free(words[j]);
         words[j] = NULL;
     }
@@ -105,7 +110,14 @@ int read_stdin_stdout()
     return 0;
 }
 
-int read_write_file(const char *fn_read, const char *fn_write)
+/**
+ * @brief luetaan tiedosto ja käännetään tiedostoon
+ * 
+ * @param fn_read 
+ * @param fn_write 
+ * @return int 
+ */
+int readFromFileWriteToFile(const char *fn_read, const char *fn_write)
 {
     char line[RSIZ][LSIZ];
     FILE *fp_read = NULL;
@@ -152,7 +164,13 @@ int read_write_file(const char *fn_read, const char *fn_write)
     return 0;
 }
 
-int read_write_std(const char *filename)
+/**
+ * @brief luetaan tiedostosto kääntäen stdoutiin
+ * 
+ * @param filename 
+ * @return int 
+ */
+int readFromFileWriteToStdout(const char *filename)
 {
     char line[RSIZ][LSIZ];
     FILE *fp_read = NULL;

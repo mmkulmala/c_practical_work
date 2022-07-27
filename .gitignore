@@ -3,3 +3,6 @@ my-grep
 my-unzip
 my-zip
 reverse
+.vscode/**
+.vscode/configurationCache.log
+.vscode/targets.log

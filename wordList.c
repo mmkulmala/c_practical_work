@@ -4,6 +4,8 @@
 #include "string.h"
 
 /**
+ * @brief viittaus [1]
+ * 
  * Adds a new occurrence to the end of a list.
  * If an occurrence has already been found on this line, the new occurrences wordNum is added the the list of wordNums
  * tail - A pointer to the current tail of a list, NULL if it's empty.

@@ -5,8 +5,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Tue Jul 26 23:15:01 2022
+# Make data base, printed on Wed Jul 27 03:56:09 2022
 
 # Variables
 
@@ -227,9 +228,9 @@ VSCODE_PID = 58951
 
 # Directories
 
-# . (device 2053, inode 942122): 13 files, no impossibilities.
+# . (device 2053, inode 942122): 16 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 16 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -255,19 +256,19 @@ my-unzip:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 18):
-	$(CC) -o my-unzip my-unzip.c
+	$(CC) -o my-unzip my-unzip.c -Wall -Werror
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-26 23:15:00.780045519
+#  Last modified 2022-07-27 03:54:44.884726457
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 wordList.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-26 23:11:30.310892316
+#  Last modified 2022-07-27 00:19:45.382697006
 #  File has been updated.
 #  Successfully updated.
 
@@ -280,10 +281,10 @@ my-grep.o:
 my-grep: wordList.o my-grep.o
 #  Implicit rule search has not been done.
 #  File does not exist.
- 
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
+ 
 # Load=0/32=0%, Rehash=0, Collisions=0/5=0%
 #  recipe to execute (from 'Makefile', line 12):
 	$(CC) -o $@ $^ $(CFLAGS)
@@ -291,7 +292,7 @@ my-grep: wordList.o my-grep.o
 # Not a target:
 wordList.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-26 23:11:30.310892316
+#  Last modified 2022-07-27 00:19:41.990660263
 #  File has been updated.
 #  Successfully updated.
 
@@ -300,7 +301,7 @@ reverse:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 24):
-	$(CC) -o reverse reverse.c
+	$(CC) -o reverse reverse.c -Wall -Werror
 
 # Not a target:
 .DEFAULT:
@@ -331,7 +332,7 @@ my-zip:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 21):
-	$(CC) -o my-zip my-zip.c
+	$(CC) -o my-zip my-zip.c -Wall -Werror
 
 wordList.o: wordList.c wordList.h
 #  Implicit rule search has been done.
@@ -368,12 +369,12 @@ wordList.o: wordList.c wordList.h
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 29 / storage = 247 B / avg = 8 B
-# current buf: size = 8162 B / used = 247 B / count = 29 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 30 / storage = 258 B / avg = 8 B
+# current buf: size = 8162 B / used = 258 B / count = 30 / avg = 8 B
 
-# strcache performance: lookups = 51 / hit rate = 43%
+# strcache performance: lookups = 54 / hit rate = 44%
 # hash-table stats:
-# Load=29/8192=0%, Rehash=0, Collisions=1/51=2%
-# Finished Make data base on Tue Jul 26 23:15:01 2022
+# Load=30/8192=0%, Rehash=0, Collisions=1/54=2%
+# Finished Make data base on Wed Jul 27 03:56:09 2022
 
  

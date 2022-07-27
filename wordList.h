@@ -2,6 +2,8 @@
 
 
 /**
+ * @brief viittaus [1]
+ *
  * Represents a node in a linked list of word-number occurrences.
  */
 

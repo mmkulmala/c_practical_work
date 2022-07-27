@@ -15,13 +15,13 @@ my-cat:
 	$(CC) -o my-cat my-cat.c -Wall -Werror
 
 my-unzip:
-	$(CC) -o my-unzip my-unzip.c
+	$(CC) -o my-unzip my-unzip.c -Wall -Werror
 
 my-zip:
-	$(CC) -o my-zip my-zip.c
+	$(CC) -o my-zip my-zip.c -Wall -Werror
 
 reverse:
-	$(CC) -o reverse reverse.c
+	$(CC) -o reverse reverse.c -Wall -Werror
 
 clean:
 	rm -f reverse
