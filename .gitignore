@@ -1,8 +1,11 @@
+# compiled apps
 my-cat
 my-grep
 my-unzip
 my-zip
+my-shell
 reverse
+# ide stuff
 .vscode/**
 .vscode/configurationCache.log
 .vscode/targets.log

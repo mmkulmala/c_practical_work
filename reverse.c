@@ -28,9 +28,10 @@ int main(int argc, char *argv[])
      * 1 = luetaan stdin:stä stdout:iin
      * 2 = luetaan annetusta tiedostosta stdout:iin
      * 3 = luetaan annetusta tiedostosta annettuun tiedostoon
+     * >3 virhe!
      */
     if (argc >3) { // tarkistus liian isolle parametri määrälle
-        fprintf(stdout, "");
+        fprintf(stdout, "usage: reverse <input> <output>");
         exit(1);
     }
     switch (argc) {
@@ -92,6 +93,12 @@ int readFromStdinToStdout()
         /* allokoidaan tilaa words[i] js null terminaattorille */
         words[counter] = malloc(strlen(buffer)+1);
 
+        /* malloc feilaa */
+        if (!words[counter]) {
+            fprintf(stderr, "malloc failed\n");
+            exit(EXIT_FAILURE);
+        }
+
         /* kopioidaan pointeriin */
         strcpy(words[counter], buffer);
 
@@ -131,7 +138,7 @@ int readFromFileWriteToFile(const char *fn_read, const char *fn_write)
     // jos tiedosto on NULL keskeytetään suoritus
     if (fp_read == NULL)
     {
-        fprintf(stderr, "Error opening file");
+        fprintf(stderr, "cannot open file '%s'\n", fn_read);
         exit(EXIT_FAILURE);
     }
 
@@ -147,7 +154,7 @@ int readFromFileWriteToFile(const char *fn_read, const char *fn_write)
 
     if (fp_write == NULL)
     {
-        fprintf(stderr, "Error writing to file");
+        fprintf(stderr, "Error writing to file '%s'\n", fn_write);
         exit(EXIT_FAILURE);
     }
 
