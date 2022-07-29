@@ -3,7 +3,7 @@ CFLAGS=-I.
 DEPS = wordList.h
 OBJ = wordList.o my-grep.o 
 
-all: my-grep my-cat my-unzip my-zip reverse
+all: my-grep my-cat my-unzip my-zip reverse wish
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
@@ -23,9 +23,13 @@ my-zip:
 reverse:
 	$(CC) -o reverse reverse.c -Wall -Werror
 
+wish:
+	$(CC) -o wish wish.c -Wall -Werror
+
 clean:
 	rm -f reverse
 	rm -f $(OBJ)
 	rm -f my-unzip
 	rm -f my-zip
 	rm -f my-cat
+	rm -f wish

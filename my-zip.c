@@ -103,14 +103,6 @@ int main(int argc, char** argv) {
     fclose(fp);
     free(buffer);
   }
-  /*
-  test_rle_len("aabcccccaaa", 8);
-  test_rle_len("aaaaaaaaaabbbbbbbbbbbbbbbbbbbb", 6);
-  test_rle_len("", 0);
-  test_rle("aabcccccaaa", "a2b1c5a3");
-  test_rle("aaaaaaaaaabbbbbbbbbbbbbbbbbbbb", "a10b20");
-  test_rle("", "");
-  test_rle("abcd", "abcd");
-  */
+  
   return 0;
 }

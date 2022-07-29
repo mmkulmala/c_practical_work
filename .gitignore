@@ -1,11 +1,22 @@
-# compiled apps
+### compiled apps ###
 my-cat
 my-grep
 my-unzip
 my-zip
-my-shell
+wish
 reverse
 # ide stuff
-.vscode/**
+### VisualStudioCode ###
+.vscode/*      
+.vscode/**/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+**/.history
+.vscode/**/*
 .vscode/configurationCache.log
 .vscode/targets.log
