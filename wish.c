@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
+/* mostly taken from: https://github.com/brenns10/lsh/blob/master/src/main.c */
 /*
   Function Declarations for builtin shell commands:
  */
