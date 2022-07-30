@@ -1,6 +1,6 @@
 # Projects for LUT course CT30A3370
 These are my course project work for System development and OS course. From selection given to us I chose the following projects:
-1. Project 1: Warmip to C and Unix programming
+1. Project 1: Warmup to C and Unix programming
 2. Project 2: Unix Utilities
 3. Porject 3: Unix Shell
 
