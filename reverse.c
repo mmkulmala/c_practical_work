@@ -90,7 +90,7 @@ int readFromStdinToStdout()
             break;
         }
 
-        /* allokoidaan tilaa words[i] js null terminaattorille */
+        /* allokoidaan tilaa words[i] ja null terminaattorille */
         words[counter] = malloc(strlen(buffer)+1);
 
         /* malloc feilaa */
@@ -132,13 +132,13 @@ int readFromFileWriteToFile(const char *fn_read, const char *fn_write)
     int i = 0; // rivien määrä
     int tot = 0; // rivien määrä yhteensä
 
-    // avataan tiedosto
+    // avataan tiedosto, josta luetaan
     fp_read = fopen(fn_read, READ_FILE);
 
     // jos tiedosto on NULL keskeytetään suoritus
     if (fp_read == NULL)
     {
-        fprintf(stderr, "cannot open file '%s'\n", fn_read);
+        fprintf(stderr, "error: cannot open file '%s'\n", fn_read);
         exit(EXIT_FAILURE);
     }
 
@@ -150,11 +150,12 @@ int readFromFileWriteToFile(const char *fn_read, const char *fn_write)
     }
     tot = i;
 
+    // avataan tiedosto, johon kirjoitetaan
     fp_write = fopen(fn_write, WRITE_FILE);
 
     if (fp_write == NULL)
     {
-        fprintf(stderr, "Error writing to file '%s'\n", fn_write);
+        fprintf(stderr, "error: cannot open file '%s'\n", fn_write);
         exit(EXIT_FAILURE);
     }
 
@@ -188,7 +189,7 @@ int readFromFileWriteToStdout(const char *filename)
 
     if (fp_read == NULL)
     {
-        fprintf(stderr, "Error opening file");
+        fprintf(stderr, "error: cannot open file '%s'\n", filename);
         exit(EXIT_FAILURE);
     }
 
