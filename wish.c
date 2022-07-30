@@ -11,12 +11,18 @@
 int wish_cd(char **args);
 int wish_path(char **args);
 int wish_exit(char **args);
-int print_error();
+int print_error(char *str);
 
 /*
-  Error message
+  Error messages
 */
 char error_message[30] = "An error has occurred\n";
+char cd_error_message[30] = "Expected argument to \"cd\"\n";
+char exit_error_message[30] = "No argument to \"exit\"\n";
+char forking_error_message[30] = "Forking error in \"launch\"\n";
+char cp_error_message[30] = "Child process in \"launch\"\n";
+char unable_to_read_line[40] = "Unable to getline in \"wish_read_line\"\n";
+char allocation_error[20] = "Allocation error\n";
 
 /*
   List of builtin commands, followed by their corresponding functions.
@@ -49,10 +55,10 @@ int wish_num_builtins() {
 int wish_cd(char **args)
 {
   if (args[1] == NULL) {
-    print_error();
+    print_error(cd_error_message);
   } else {
     if (chdir(args[1]) != 0) {
-      perror("lsh");
+      print_error(error_message);
     }
   }
   return 1;
@@ -67,7 +73,7 @@ int wish_path(char **args)
 {
   char *local_args[] = {"/bin", (char *) NULL};
   execvp("/bin", local_args);
-  if (args != NULL) {
+  if (args[1] != NULL) {
     
   } else {
     fprintf(stdout, "path is: %s\n", local_args[0]);
@@ -84,17 +90,18 @@ int wish_path(char **args)
 int wish_exit(char **args)
 {
   if (args[1] != NULL) {
-    print_error();
+    print_error(exit_error_message);
+    return 1;
   }
   return 0;
 }
 
 /**
- * @brief Print error message
+ * @brief Print error messages
  * 
  */
-int print_error() {
-  write(STDERR_FILENO, error_message, strlen(error_message)); 
+int print_error(char *str) {
+  write(STDERR_FILENO, str, strlen(str)); 
   return 1;
 }
 
@@ -112,12 +119,11 @@ int wish_launch(char **args)
   if (pid == 0) {
     // Child process
     if (execvp(args[0], args) == -1) {
-      print_error();
+      print_error(cp_error_message);
     }
     exit(EXIT_FAILURE);
   } else if (pid < 0) {
-    // Error forking
-    print_error();
+    print_error(forking_error_message);
   } else {
     // Parent process
     do {
@@ -164,7 +170,7 @@ char *wish_read_line(void)
     if (feof(stdin)) {
       exit(EXIT_SUCCESS);  // We received an EOF
     } else  {
-      perror("lsh: getline\n");
+      print_error(unable_to_read_line);
       exit(EXIT_FAILURE);
     }
   }
@@ -177,8 +183,7 @@ char *wish_read_line(void)
   int c;
 
   if (!buffer) {
-    // allocation error
-    print_error();
+    print_error(allocation_error);
     exit(EXIT_FAILURE);
   }
 
@@ -201,8 +206,7 @@ char *wish_read_line(void)
       bufsize += LSH_RL_BUFSIZE;
       buffer = realloc(buffer, bufsize);
       if (!buffer) {
-        // allocation error
-        print_error();
+        print_error(allocation_error);
         exit(EXIT_FAILURE);
       }
     }
@@ -224,8 +228,7 @@ char **wish_split_line(char *line)
   char *token, **tokens_backup;
 
   if (!tokens) {
-    // allocation error
-    print_error();
+    print_error(allocation_error);
     exit(EXIT_FAILURE);
   }
 
@@ -240,8 +243,7 @@ char **wish_split_line(char *line)
       tokens = realloc(tokens, bufsize * sizeof(char*));
       if (!tokens) {
 		free(tokens_backup);
-        //allocation error
-        print_error();
+        print_error(allocation_error);
         exit(EXIT_FAILURE);
       }
     }

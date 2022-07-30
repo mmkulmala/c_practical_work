@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jul 29 21:08:22 2022
+# Make data base, printed on Sat Jul 30 18:09:30 2022
 
 # Variables
 
@@ -54,7 +54,6 @@ JOURNAL_STREAM = 8:32187
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
- 
 # automatic
 @F = $(notdir $@)
 # environment
@@ -127,6 +126,8 @@ APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 +F = $(notdir $+)
 # environment
 ZSH = /home/marno/.oh-my-zsh
+# makefile (from 'Makefile', line 8)
+binaries = my-grep my-cat my-unzip my-zip reverse wish
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
@@ -220,7 +221,7 @@ LANG = C
 # environment
 VSCODE_PID = 58951
 # variable set hash-table stats:
-# Load=104/1024=10%, Rehash=0, Collisions=19/136=14%
+# Load=105/1024=10%, Rehash=0, Collisions=21/138=15%
 
 # Pattern-specific Variable Values
 
@@ -228,14 +229,14 @@ VSCODE_PID = 58951
 
 # Directories
 
-# . (device 2053, inode 942122): 18 files, no impossibilities.
+# . (device 2053, inode 942122): 16 files, no impossibilities.
 
-# 18 files, no impossibilities in 1 directories.
+# 16 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 %.o: %.c wordList.h
-#  recipe to execute (from 'Makefile', line 9):
+#  recipe to execute (from 'Makefile', line 13):
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 # 1 implicit rules, 0 (0.0%) terminal.
@@ -255,24 +256,30 @@ my-unzip:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 18):
+#  recipe to execute (from 'Makefile', line 22):
 	$(CC) -o my-unzip my-unzip.c -Wall -Werror
+
+.PHONY: clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 wish:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 27):
+#  recipe to execute (from 'Makefile', line 31):
 	$(CC) -o wish wish.c -Wall -Werror
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-29 21:08:08.435808004
+#  Last modified 2022-07-30 15:13:36.172674636
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
+ 
 wordList.c:
 #  Implicit rule search has been done.
 #  Last modified 2022-07-27 00:19:45.382697006
@@ -292,7 +299,7 @@ my-grep: wordList.o my-grep.o
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/5=0%
-#  recipe to execute (from 'Makefile', line 12):
+#  recipe to execute (from 'Makefile', line 16):
 	$(CC) -o $@ $^ $(CFLAGS)
 
 # Not a target:
@@ -306,7 +313,7 @@ reverse:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 24):
+#  recipe to execute (from 'Makefile', line 28):
 	$(CC) -o reverse reverse.c -Wall -Werror
 
 # Not a target:
@@ -319,27 +326,23 @@ my-cat:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
-#  recipe to execute (from 'Makefile', line 15):
+#  recipe to execute (from 'Makefile', line 19):
 	$(CC) -o my-cat my-cat.c -Wall -Werror
 
 clean:
+#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Modification time never checked.
+#  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 30):
-	rm -f reverse
+#  recipe to execute (from 'Makefile', line 34):
+	rm -f $(binaries)
 	rm -f $(OBJ)
-	rm -f my-unzip
-	rm -f my-zip
-	rm -f my-cat
-	rm -f wish
 
 my-zip:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 21):
+#  recipe to execute (from 'Makefile', line 25):
 	$(CC) -o my-zip my-zip.c -Wall -Werror
 
 wordList.o: wordList.c wordList.h
@@ -366,23 +369,23 @@ wordList.o: wordList.c wordList.h
 # ? := wordList.c wordList.h
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/15=7%
-#  recipe to execute (from 'Makefile', line 9):
+#  recipe to execute (from 'Makefile', line 13):
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 # files hash-table stats:
-# Load=15/1024=1%, Rehash=0, Collisions=0/45=0%
+# Load=16/1024=2%, Rehash=0, Collisions=0/48=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 33 / storage = 279 B / avg = 8 B
-# current buf: size = 8162 B / used = 279 B / count = 33 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 34 / storage = 287 B / avg = 8 B
+# current buf: size = 8162 B / used = 287 B / count = 34 / avg = 8 B
 
-# strcache performance: lookups = 59 / hit rate = 44%
+# strcache performance: lookups = 60 / hit rate = 43%
 # hash-table stats:
-# Load=33/8192=0%, Rehash=0, Collisions=1/59=2%
-# Finished Make data base on Fri Jul 29 21:08:22 2022
+# Load=34/8192=0%, Rehash=0, Collisions=1/60=2%
+# Finished Make data base on Sat Jul 30 18:09:30 2022
 
  
