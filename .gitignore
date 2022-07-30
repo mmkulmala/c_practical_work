@@ -5,7 +5,6 @@ my-unzip
 my-zip
 wish
 reverse
-# ide stuff
 ### VisualStudioCode ###
 .vscode/*      
 .vscode/**/*
