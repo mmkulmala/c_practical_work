@@ -66,19 +66,62 @@ int wish_cd(char **args)
 }
 
 /**
-   @brief Builtin command: add to path. Starts with /bin
+   @brief Builtin command: search path. Starts with /bin
    @param args List of args.  Not examined.
    @return Always returns 1, to continue executing.
  */
 int wish_path(char **args)
 {
-  char *local_args[] = {"/bin", (char *) NULL};
-  execvp("/bin", local_args);
-  if (args[1] != NULL) {
-    
-  } else {
-    fprintf(stdout, "path is: %s\n", local_args[0]);
+  // add /bin to path
+  setenv("PATH", "/bin", 1);
+  // builtin command itself
+  char *cmd = "path";
+  char path_str[1024] = "PATH=/bin:";
+  char tmp_path[800];
+  int siz = 0;
+  if(args[1] != NULL) {
+    for (char* chr_arg = *args; chr_arg; chr_arg= *++args) {
+      if (strcmp(cmd, chr_arg)) { // check that path to add is not cmd
+        int siz_of_arg = strlen(chr_arg) +1;
+        char holder_for_arg[siz_of_arg]; 
+        strcpy(holder_for_arg, chr_arg); // taken from: https://stackoverflow.com/questions/1508838/how-to-copy-char-str-to-char-c-in-c
+        char delim[] = ":"; 
+        strcat(holder_for_arg, delim);
+        fprintf(stdout, "holder_for_arg=%s\n", holder_for_arg);
+        if(siz > 1) {
+          strcat(tmp_path, holder_for_arg);
+        } else {
+          strcpy(tmp_path, holder_for_arg);
+        }
+      }
+      siz++;
+      
+    }
+    // clean tmp path
+    // taken from: https://stackoverflow.com/questions/18949552/removing-last-character-in-c
+    int size = strlen(tmp_path); //Total size of string
+    tmp_path[size-1] = '\0';
+    strcat(path_str, tmp_path);
+    // update path
+    if (-1 == putenv(path_str)) {
+        print_error(error_message);
+        return EXIT_FAILURE;
+    }
   }
+  
+  char *dup = strdup(getenv("PATH"));
+  char *s = dup;
+  char *p = NULL;
+  do {
+      p = strchr(s, ':');
+      if (p != NULL) {
+          p[0] = 0;
+      }
+      printf("Path in $PATH: %s\n", s);
+      s = p + 1;
+  } while (p != NULL);
+  
+  free(dup);
   
   return 1;
 }
@@ -164,7 +207,7 @@ int wish_execute(char **args)
  */
 char *wish_read_line(void)
 {
-#ifdef LSH_USE_STD_GETLINE
+#ifdef WISH_USE_STD_GETLINE
   char *line = NULL;
   ssize_t bufsize = 0; // have getline allocate a buffer for us
   if (getline(&line, &bufsize, stdin) == -1) {
@@ -177,8 +220,8 @@ char *wish_read_line(void)
   }
   return line;
 #else
-#define LSH_RL_BUFSIZE 1024
-  int bufsize = LSH_RL_BUFSIZE;
+#define WISH_RL_BUFSIZE 1024
+  int bufsize = WISH_RL_BUFSIZE;
   int position = 0;
   char *buffer = malloc(sizeof(char) * bufsize);
   int c;
@@ -204,7 +247,7 @@ char *wish_read_line(void)
 
     // If we have exceeded the buffer, reallocate.
     if (position >= bufsize) {
-      bufsize += LSH_RL_BUFSIZE;
+      bufsize += WISH_RL_BUFSIZE;
       buffer = realloc(buffer, bufsize);
       if (!buffer) {
         print_error(allocation_error);
