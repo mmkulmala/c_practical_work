@@ -1,4 +1,4 @@
-#define MAXLINE 101        /* The maximum length of a line, plus one. */
+#define MAXLINE 14097        /* The maximum length of a line, plus one. */
 
 
 /**

@@ -43,8 +43,7 @@ int main(int argc, char*argv[])
 {
     if (argc != 3)
     {
-        printf("my-grep: Improper number of arguments\n"
-               "Usage: %s <word> <filename>\n", argv[0]);
+        fprintf(stderr,"my-grep: searchterm [file ...]\n");
         return 1;
     }
     else
@@ -54,8 +53,8 @@ int main(int argc, char*argv[])
 
         if (file == NULL)
         {
-            printf("myGrep: Unable to open file: %s\n", argv[2]);
-            return 2;
+            fprintf(stderr, "my-grep: cannot open file: %s\n", argv[2]);
+            return 1;
         }
         else
         {
@@ -106,9 +105,6 @@ int main(int argc, char*argv[])
                 lineNum++;
             }
 
-            printf("Longest line (%d characters): %s",longestLineNum,longestLineStr);
-            printf("Number of lines: %d\n",lineNum);
-            printf("Total occurrences of \"%s\": %d\n",argv[1],occurrenceCount);
             printLines(head);
             fclose(file);
 

@@ -1,6 +1,8 @@
 ### compiled apps ###
 my-cat
 my-grep
+my-grep.o
+wordList.o
 my-unzip
 my-zip
 wish
