@@ -3,8 +3,17 @@
 #include <string.h>
 #include <ctype.h>
 #include <assert.h>
+#include <fcntl.h>
+#include <unistd.h>
 
-int run_length(char* s) {
+/**
+ * @brief Gets how long should RLE be
+ * 
+ * @param s 
+ * @return int 
+ */
+int run_length(char* s) 
+{
   char c = s[0];
   if (c == '\0') return 0;
   int length = 1;
@@ -12,11 +21,25 @@ int run_length(char* s) {
   return length;
 }
 
-int strlen_i(int i) {
+/**
+ * @brief Get String length
+ * 
+ * @param i 
+ * @return int 
+ */
+int strlen_i(int i) 
+{
   return snprintf(NULL, 0, "%i", i);
 }
 
-int rle_len(char* s) {
+/**
+ * @brief RLE length
+ * 
+ * @param s 
+ * @return int 
+ */
+int rle_len(char* s) 
+{
   int len = 0;
   int rl = run_length(s);
   while (rl > 0) {
@@ -27,7 +50,14 @@ int rle_len(char* s) {
   return len;
 }
 
-char* rle(char* s) {
+/**
+ * @brief RLE encode
+ * 
+ * @param s 
+ * @return char* 
+ */
+char* rle_encode(char* s) 
+{
   int old_len = strlen(s);
   int new_len = rle_len(s);
 
@@ -49,59 +79,52 @@ char* rle(char* s) {
   return out;
 }
 
-void test_rle_len(char* input, int expected) {
-  assert(rle_len(input) == expected);
+/**
+ * @brief Write binary to output
+ * Idea taken from: https://stackoverflow.com/questions/39322417/how-to-printf-binary-data-in-c
+ * @param input 
+ */
+void print_rle(char* input) 
+{
+  char* output = rle_encode(input);
+  
+  size_t size = sizeof(output); /* or however much you're planning to write */
+  fwrite(output, 1, size, stdout); // write output to stdout
 }
 
-void test_rle(char* input, char* expected) {
-  char* output = rle(input);
-  assert(strcmp(output, expected) == 0);
-  free(output);
-}
-
-int charToInt(char c){
-  return c - '0';
-}
-
-void print_rle(char* input) {
-  char* output = rle(input);
-  // from: https://stackoverflow.com/questions/3213827/how-to-iterate-over-a-string-in-c
-  for (char character = *output; character != '\0'; character = *++output)
-  {
-    if (isdigit(character)) {
-      int int_to_compress = charToInt(character);
-      fwrite(&int_to_compress,sizeof(int),1, stdout);
-    } else {
-      fwrite(&character, sizeof(char), 1, stdout);
-    }
-  }
-  fflush(stdout);
-}
-
-int main(int argc, char** argv) {
-  FILE *fp;
-  long lSize;
-  char *buffer;
-
+int main(int argc, char** argv) 
+{
+ 
+  // idea from: https://stackoverflow.com/questions/14002954/c-programming-how-to-read-the-whole-file-contents-into-a-buffer
   for(int i = 1; i < argc; i++) {
-    fp = fopen (argv[i], "rb" );
-    if( !fp ) perror(argv[i]),exit(1);
+    FILE *fp = fopen (argv[i], "rb" );
+    if(!fp) {
+      fprintf(stderr, "reading failed %s\n", argv[i]);
+      exit(1);
+    }
 
-    fseek( fp , 0L , SEEK_END);
-    lSize = ftell( fp );
-    rewind( fp );
+    fseek(fp , 0L , SEEK_END);
+    long fsize = ftell( fp );
+    rewind(fp);
 
     /* allocate memory for entire content */
-    buffer = calloc( 1, lSize+1 );
-    if( !buffer ) fclose(fp),fputs("memory alloc fails",stderr),exit(1);
-
+    char *buffer = malloc(fsize+1);
+    if(!buffer) {
+      fclose(fp);
+      fprintf(stderr, "memory alloc fails");
+      exit(1);
+    }
     /* copy the file into the buffer */
-    if( 1!=fread( buffer , lSize, 1 , fp) )
-    fclose(fp),free(buffer),fputs("entire read fails",stderr),exit(1);
-    
-    print_rle(buffer);
-    fclose(fp);
-    free(buffer);
+    if(1!=fread( buffer , fsize, 1 , fp)) { // if not successful ..
+      fclose(fp); // .. close file
+      free(buffer); // .. free buffer
+      fprintf(stderr, "reading fails"),
+      exit(1);
+    }
+    fclose(fp); // close successful read
+    buffer[fsize] = '\0'; // null terminator
+    print_rle(buffer); // print rle
+    free(buffer); // free buffer
   }
   
   return 0;
