@@ -132,6 +132,11 @@ int readFromFileWriteToFile(const char *fn_read, const char *fn_write)
     int i = 0; // rivien määrä
     int tot = 0; // rivien määrä yhteensä
 
+    // tarkastetaanko onko tiedostot samoja?
+    if (!strcmp(fn_read, fn_write)) {
+        fprintf(stderr, "Input and output file must differ\n");
+        exit(1);
+    }
     // avataan tiedosto, josta luetaan
     fp_read = fopen(fn_read, READ_FILE);
 
@@ -158,6 +163,7 @@ int readFromFileWriteToFile(const char *fn_read, const char *fn_write)
         fprintf(stderr, "error: cannot open file '%s'\n", fn_write);
         exit(EXIT_FAILURE);
     }
+
 
     /**
     * käännetään annetut rivit lukemalla array lopusta alkuun

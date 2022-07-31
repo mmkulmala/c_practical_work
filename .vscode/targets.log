@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jul 30 18:09:30 2022
+# Make data base, printed on Sun Jul 31 20:03:02 2022
 
 # Variables
 
@@ -47,9 +47,9 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/share/code/code
 # makefile (from 'Makefile', line 2)
-CFLAGS = -I.
+CFLAGS = -I. -Wall -Werror
 # environment
-JOURNAL_STREAM = 8:32187
+JOURNAL_STREAM = 8:31565
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -67,7 +67,7 @@ XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/d
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
-MANAGERPID = 1082
+MANAGERPID = 1043
 # environment
 LC_NAME = fi_FI.UTF-8
 # environment
@@ -75,13 +75,13 @@ VSCODE_CWD = /home/marno
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+PATH = /home/marno/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-SESSION_MANAGER = local/marno-VirtualBox:@/tmp/.ICE-unix/1358,unix/marno-VirtualBox:/tmp/.ICE-unix/1358
+SESSION_MANAGER = local/marno-VirtualBox:@/tmp/.ICE-unix/1316,unix/marno-VirtualBox:/tmp/.ICE-unix/1316
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -89,7 +89,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = d1604698ca48402db937b78520bda7f7
+INVOCATION_ID = 7f232a92d6424ec0b8174a0919799926
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -97,7 +97,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 58951
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2217
 # automatic
 %F = $(notdir $%)
 # environment
@@ -107,7 +107,7 @@ PWD = /home/marno/Documents/sysdev/c_practical_work
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1303
+SSH_AGENT_PID = 1262
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -219,7 +219,7 @@ LC_ADDRESS = fi_FI.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 58951
+VSCODE_PID = 2217
 # variable set hash-table stats:
 # Load=105/1024=10%, Rehash=0, Collisions=21/138=15%
 
@@ -229,9 +229,9 @@ VSCODE_PID = 58951
 
 # Directories
 
-# . (device 2053, inode 942122): 16 files, no impossibilities.
+# . (device 2053, inode 942122): 27 files, no impossibilities.
 
-# 16 files, no impossibilities in 1 directories.
+# 27 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -274,7 +274,7 @@ wish:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-30 15:13:36.172674636
+#  Last modified 2022-07-31 18:56:42.272744678
 #  File has been updated.
 #  Successfully updated.
 
@@ -294,7 +294,7 @@ my-grep.o:
 
 my-grep: wordList.o my-grep.o
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2022-07-31 18:58:04.2810129
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -305,7 +305,7 @@ my-grep: wordList.o my-grep.o
 # Not a target:
 wordList.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-27 00:19:41.990660263
+#  Last modified 2022-07-31 19:57:15.074248928
 #  File has been updated.
 #  Successfully updated.
 
@@ -337,6 +337,7 @@ clean:
 #  recipe to execute (from 'Makefile', line 34):
 	rm -f $(binaries)
 	rm -f $(OBJ)
+	rm -f *.z
 
 my-zip:
 #  Implicit rule search has not been done.
@@ -348,7 +349,7 @@ my-zip:
 wordList.o: wordList.c wordList.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'wordList'
-#  File does not exist.
+#  Last modified 2022-07-31 18:56:03.130537704
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
@@ -366,7 +367,7 @@ wordList.o: wordList.c wordList.h
 # automatic
 # ^ := wordList.c wordList.h
 # automatic
-# ? := wordList.c wordList.h
+# ? := wordList.h
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/15=7%
 #  recipe to execute (from 'Makefile', line 13):
@@ -380,12 +381,12 @@ wordList.o: wordList.c wordList.h
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 34 / storage = 287 B / avg = 8 B
-# current buf: size = 8162 B / used = 287 B / count = 34 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 37 / storage = 317 B / avg = 8 B
+# current buf: size = 8162 B / used = 317 B / count = 37 / avg = 8 B
 
-# strcache performance: lookups = 60 / hit rate = 43%
+# strcache performance: lookups = 71 / hit rate = 47%
 # hash-table stats:
-# Load=34/8192=0%, Rehash=0, Collisions=1/60=2%
-# Finished Make data base on Sat Jul 30 18:09:30 2022
+# Load=37/8192=0%, Rehash=0, Collisions=1/71=1%
+# Finished Make data base on Sun Jul 31 20:03:02 2022
 
  

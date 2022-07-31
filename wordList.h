@@ -1,8 +1,8 @@
-#define MAXLINE 14097        /* The maximum length of a line, plus one. */
+#define MAXLINE 20001        /* The maximum length of a line, plus one. */
 
 
 /**
- * @brief viittaus [1]
+ * @brief viittaus []
  *
  * Represents a node in a linked list of word-number occurrences.
  */

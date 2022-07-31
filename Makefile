@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I.
+CFLAGS=-I. -Wall -Werror
 DEPS = wordList.h
 OBJ = wordList.o my-grep.o 
 

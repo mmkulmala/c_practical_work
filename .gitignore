@@ -9,6 +9,7 @@ wish
 reverse
 test
 test.c
+testing.c
 *.z
 ### VisualStudioCode ###
 .vscode/*      

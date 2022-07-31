@@ -5,7 +5,7 @@
 
 
 /**
- * @brief viittaus [1]
+ * @brief viittaus [1] projektidokumentaatiossa
  *
  * Removes an occurrence from the beginning of a list.
  * head - A pointer to the current head of a list, NULL if it's empty
