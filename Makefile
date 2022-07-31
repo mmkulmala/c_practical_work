@@ -33,3 +33,4 @@ wish:
 clean:
 	rm -f $(binaries)
 	rm -f $(OBJ)
+	rm -f *.z
