@@ -53,7 +53,8 @@ int main(int argc, char *argv[])
 
 /**
  * @brief luetaan stdinistä kääntäen stdoutiin
- * https://stackoverflow.com/questions/41518039/how-to-input-strings-into-an-array-in-c
+ * Lähde: https://stackoverflow.com/questions/41518039/how-to-input-strings-into-an-array-in-c
+ * 
  * @return int 
  */
 int readFromStdinToStdout()
@@ -119,7 +120,7 @@ int readFromStdinToStdout()
 
 /**
  * @brief luetaan tiedosto ja käännetään tiedostoon
- * Viiteenä käytetty: https://stackoverflow.com/questions/2029103/correct-way-to-read-a-text-file-into-a-buffer-in-c 
+ * Lähde: https://www.w3resource.com/c-programming-exercises/file-handling/c-file-handling-exercise-4.php
  * @param fn_read 
  * @param fn_write 
  * @return int 
@@ -180,7 +181,7 @@ int readFromFileWriteToFile(const char *fn_read, const char *fn_write)
 
 /**
  * @brief luetaan tiedostosto kääntäen stdoutiin
- * 
+ * Lähde: https://www.w3resource.com/c-programming-exercises/file-handling/c-file-handling-exercise-4.php
  * @param filename 
  * @return int 
  */
