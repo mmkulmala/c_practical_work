@@ -5,7 +5,7 @@
 
 
 /**
- * @brief viittaus [1] projektidokumentaatiossa
+ * @brief vlähde https://github.com/cartcrom/C-Grep-Implementation
  *
  * Removes an occurrence from the beginning of a list.
  * head - A pointer to the current head of a list, NULL if it's empty

@@ -4,7 +4,7 @@
 #include "string.h"
 
 /**
- * @brief viittaus [1]
+ * @brief lähde: https://github.com/cartcrom/C-Grep-Implementation
  * 
  * Adds a new occurrence to the end of a list.
  * If an occurrence has already been found on this line, the new occurrences wordNum is added the the list of wordNums
