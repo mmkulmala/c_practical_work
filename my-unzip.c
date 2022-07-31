@@ -4,7 +4,8 @@
 #include <ctype.h>
 
 /**
- * @brief 
+ * @brief merkki kokonaisluvuksi
+ * lähde: https://interviewsansar.com/char-to-int-c-program/
  * 
  * @param c 
  * @return int 
@@ -65,7 +66,7 @@ int main(int argc, char** argv)
     }
     fclose(fp); // close successful read
     buffer[fsize] = '\0'; // null terminator
-    print_rle(buffer); // print rle
+    decode_rle(buffer); // print rle
     free(buffer); // free buffer
   }
   return 0; 
