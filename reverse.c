@@ -119,7 +119,7 @@ int readFromStdinToStdout()
 
 /**
  * @brief luetaan tiedosto ja käännetään tiedostoon
- * 
+ * Viiteenä käytetty: https://stackoverflow.com/questions/2029103/correct-way-to-read-a-text-file-into-a-buffer-in-c 
  * @param fn_read 
  * @param fn_write 
  * @return int 
