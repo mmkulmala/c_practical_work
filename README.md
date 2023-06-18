@@ -8,7 +8,7 @@ Selection was based from the list below:
 https://github.com/remzi-arpacidusseau/ostep-projects
 
 ## Compiling my solutions
-I've added an Makefile to my project root, so if you want to comile any of my projects you can do this with command make. You also need gcc installed to your Linux distro as
+I've added an Makefile to my project root, so if you want to compile any of my projects you can do this with command make. You also need gcc installed to your Linux distro as
 these applications are testing and developed in Ubuntu 20.04. Some of them works also in Mac OSX.
 
 Example of compiling all is given below
