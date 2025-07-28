@@ -4,8 +4,8 @@
 #include <ctype.h>
 
 /**
- * @brief merkki kokonaisluvuksi
- * lähde: https://interviewsansar.com/char-to-int-c-program/
+ * @brief Character to integer
+ * Source: https://interviewsansar.com/char-to-int-c-program/
  * 
  * @param c 
  * @return int 
