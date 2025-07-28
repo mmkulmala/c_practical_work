@@ -7,8 +7,8 @@
 #include <unistd.h>
 
 /**
- * @brief lähde: https://stackoverflow.com/questions/14002954/c-programming-how-to-read-the-whole-file-contents-into-a-buffer
- * my-zip ratkasuni
+ * @brief https://stackoverflow.com/questions/14002954/c-programming-how-to-read-the-whole-file-contents-into-a-buffer
+ * my-zip solution
  */
 /**
  * @brief Gets how long should RLE be
